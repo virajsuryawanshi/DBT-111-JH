@@ -1,0 +1,96 @@
+SECTION1
+
+Q1.ANS.
+CREATE TABLE DEPT(DEPTNO int(2),
+DNAME varchar(15),
+LOC varchar(10)
+);
+INSERT INTO DEPT(DEPTNO,DNAME,LOC)
+VALUES(10, 'ACCOUNTING', 'NEW YORK'),
+(20,'RESEARCH',' DALLAS'),
+(30, 'SALES', 'CHICAGO'),
+(40 ,'OPERATIONS' ,'BOSTON');
+
+****************************************************************************************
+
+Q2.ANS.
+CREATE TABLE EMP(EMPNO int(4),
+ENAME varchar(10),
+JOB varchar(9),
+HIREDATE date,
+SAL float(7,2),
+COMM float(7,2),
+DEPTNO int(2)
+);
+INSERT INTO EMP(EMPNO,ENAME,JOB,HIREDATE,SAL,COMM,DEPTNO)
+VALUES(7839 ,'KING' ,'MANAGER ','1991-11-17', 5000, NULL, 10),
+(7698 ,'BLAKE',' CLERK' ,'1981-05-01', 2850, NULL, 30),
+(7782 ,'CLARK', 'MANAGER', '1981-06-09', 2450, NULL, 10),
+(7566 ,'JONES', 'CLERK' ,'1981-04-02', 2975, NULL, 20),
+(7654, 'MARTIN', 'SALESMAN' ,'1981-09-28', 1250, 1400, 30),
+(7499,' ALLEN ','SALESMAN' ,'1981-02-20 ',1600, 300 ,30);
+
+****************************************************************************************************
+
+Q3.ANS.
+SELECT * FROM EMP WHERE SAL BETWEEN 2500 and 5000;
+-------------------------------------------------------
+
+Q4.ANS.
+SELECT * FROM EMP ORDER BY ENAME DESC;
+
+-----------------------------------------------------------
+Q5.ANS.
+SELECT LOWER(JOB) FROM EMP;
+
+-----------------------------------------------------
+Q6.ANS.
+SELECT ENAME,LENGTH(ENAME) FROM EMP;
+----------------------------------------------------------------
+
+Q7.ANS.
+SELECT DEPTNO,COUNT(*) FROM DEPT GROUP BY DEPTNO;
+
+-------------------------------------------------------------
+
+Q8.ANS.
+SELECT DISTINCT DNAME,ENAME FROM DEPT,EMP;
+
+
+-----------------------------------------------------
+
+Q9.ANS.
+SELECT ENAME ,POSITION('AR' IN ENAME)FROM EMP;
+
+------------------------------------------------------------
+
+
+Q10.ANS.
+SELECT ENAME,SAL,SAL*0.2 AS HRA FROM EMP;
+
+------------------------------------------------------------
+
+
+SECTION2
+Q1.ANS.
+
+
+
+
+
+Q2.ANS.
+CREATE OR REPLACE FUNCTION triangle (a number,b number ,c number)RETURN boolean AS invalid_triangle exception;
+BEGIN IF NOT(a+b>=c 
+AND b+c>=a
+AND c+a>=b)THEN RAISE invalid triangle;
+ELSE RETURN TRUE;
+END IF;
+exception WHEN invalid_triangle THEN dbms_output.put.line('xxxxx-invalid triangle-xxxxxx');
+RETURN FALSE;
+WHEN others THEN dbms_output.put.line('un identified error occured');
+END;
+/
+
+
+
+
